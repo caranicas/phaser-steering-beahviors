@@ -30,8 +30,8 @@ $(document).ready(function() {
 	{
 	  createFlockOne();
     createFlockTwo();
-    createWormholeOne();
-    createWormholeTwo();
+   // createWormholeOne();
+   // createWormholeTwo();
 	}
 
 	function createWanderTest()

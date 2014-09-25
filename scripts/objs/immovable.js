@@ -1,10 +1,10 @@
 function Immovable(game) {
-  flockObject.call(this, game); // call super constructor.
+  GameEntity.call(this, game); // call super constructor.
 }
 
 
 // subclass extends superclass
-Immovable.prototype = Object.create(flockObject.prototype);
+Immovable.prototype = Object.create(GameEntity.prototype);
 Immovable.prototype.constructor = Immovable;
 
 
