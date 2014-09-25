@@ -9,7 +9,6 @@ wormhole.prototype.create = function(xpos, ypos, clickhandle, scope) {
   this.game.physics.enable(this.entity, Phaser.Physics.ARCADE);
   this.entity.inputEnabled = true;
   this.entity.events.onInputDown.add(clickhandle, scope);
-
 }
 
 

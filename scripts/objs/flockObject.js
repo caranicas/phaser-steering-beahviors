@@ -19,6 +19,19 @@ flockObject = function (game) {
 	this.maxSeeAhead = 100;
 	this.debugVector = null;
 
+	this.wanderCircleRad = 50;
+	this.wanderCircleDist = 100;
+	this.wanderAngle = 180;
+	this.wanderVariance = 40;
+	this.wanderDate = new Date();
+	this.wanderTime = 1;
+
+	this.wanderDebugVec = null;
+	this.wanderDebugCircle = null;
+	this.debugDisplacmentVec = null;
+
+	this.debugExtension = new Phaser.Point(0,0);
+	this.debugDisplacemt = new Phaser.Point(0,0);
 
 	//Categories
 	this.category = -1;
@@ -44,6 +57,9 @@ flockObject.prototype.create = function(pos,vel,angle, debug){
 		if(debug)
 		{
 			this.debugVector = new Phaser.Line(10,10,40,10);
+			this.wanderDebugVec = new Phaser.Line(10,10,40,10);
+			this.debugDisplacmentVec = new Phaser.Line(10,10,40,10)
+			this.wanderDebugCircle = new Phaser.Circle(this.entity.position.x, this.entity.position.y, this.wanderCircleRad*2)
 		}
 
 		return this;
@@ -55,11 +71,41 @@ flockObject.prototype.debugUpdate = function(){
 	this.debugVector.start.y = this.entity.position.y;
 	this.debugVector.end.x = this.entity.position.x + this.entity.body.velocity.x;
 	this.debugVector.end.y = this.entity.position.y + this.entity.body.velocity.y;
+
+	this.wanderDebugVec.start.x = this.entity.position.x;
+	this.wanderDebugVec.start.y = this.entity.position.y;
+	this.wanderDebugVec.end.x = this.debugExtension.x;
+	this.wanderDebugVec.end.y = this.debugExtension.y;
+
+	this.wanderDebugCircle.x = this.wanderDebugVec.end.x;
+	this.wanderDebugCircle.y = this.wanderDebugVec.end.y;
+
+
+	this.debugDisplacmentVec.start.x = this.wanderDebugVec.end.x;
+	this.debugDisplacmentVec.start.y = this.wanderDebugVec.end.y;
+	this.debugDisplacmentVec.end.x = this.wanderDebugVec.end.x + this.debugDisplacemt.x;
+	this.debugDisplacmentVec.end.y = this.wanderDebugVec.end.y+ this.debugDisplacemt.y;
+
 }
 
 flockObject.prototype.debugRender = function(){
-	this.game.debug.geom(this.debugVector,0x999999, true);
 	this.game.debug.spriteBounds(this.entity);
+	this.debugVelocityRender();
+	this.debugWanderRender();
+}
+
+
+flockObject.prototype.debugVelocityRender = function(){
+	this.game.debug.geom(this.debugVector,'blue', true);
+
+}
+
+
+flockObject.prototype.debugWanderRender = function(){
+	this.game.debug.geom(this.wanderDebugCircle,'green', true);
+	this.game.debug.geom(this.wanderDebugVec,'white', true);
+	this.game.debug.geom(this.debugDisplacmentVec,'red', true);
+
 }
 
 
