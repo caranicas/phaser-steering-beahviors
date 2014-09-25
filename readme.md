@@ -1,7 +1,7 @@
 
 Hope you like lots of script tags and alot of copy and paste. But atleast all the demos are separated.
 
-Wandering is still in progress, but it is so close I can taste it. Not sure why I start going and never turn out of it.
+Wandering is still in progress, but it is so close I can taste it. Not sure why I start going up and never turn out of it.
 
 -- Current Working Behaviors --
 
