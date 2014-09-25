@@ -5,7 +5,7 @@ flockObject = function (game) {
 	this.entity = null;
 
 	// Behavior Objects
-	this.sepInfluence = 25;
+	this.sepInfluence = 10;
 	this.aligInfluence = 40;
 	this.cohInfluence = 50;
 
