@@ -1,4 +1,4 @@
-// planned Factory method for building out objects
+// Planned factory method for building out objects
 function Factory(){
 
 }

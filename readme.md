@@ -1,14 +1,21 @@
-Note this is not production ready.  Will be working on fully fledged demos once all things are worked out, right now the code is a bit of a mess but with some work you can manually switch out what behavior you would like to see.
 
+Hope you like lots of script tags and alot of copy and paste. But atleast all the demos are separated.
 
--- Current Working Behaviors
+Wandering is still in progress, but it is so close I can taste it. Not sure why I start going and never turn out of it.
+
+-- Current Working Behaviors --
 
 - Seeking
 - Flocking
 - Object Avoidance
 
--- On the Docket
+-- On the Docket --
 - Wandering
 - Follow
 - Flee
 - Arrival
+
+-- Things that need doing --
+- Bower
+- More objects, inherit all the things!
+- Learn better markdown
