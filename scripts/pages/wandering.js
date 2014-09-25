@@ -1,5 +1,4 @@
 
-
 $(document).ready(function() {
 	var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render });
 
@@ -12,7 +11,7 @@ $(document).ready(function() {
 	var TwoSeek = false;
 	var WormHole;
 	var self = this;
-	var isDebugging = false;
+	var isDebugging = true;
 
   function preload () {
   	game.load.image('spaceBG', 'assets/space.jpg');
@@ -24,7 +23,7 @@ $(document).ready(function() {
   function create () {
     var bg = game.add.sprite(game.world.centerX, game.world.centerY, 'spaceBG');
     bg.anchor.setTo(0.5, 0.5);
-    createAvoidanceTest();
+   	createWanderTest()
 	}
 
 	function createFlockingTest()
@@ -34,6 +33,7 @@ $(document).ready(function() {
     createWormholeOne();
     createWormholeTwo();
 	}
+
 	function createAvoidanceTest()
 	{
 			createFlockOne();
@@ -84,6 +84,22 @@ $(document).ready(function() {
 			wormhole.behavior = new BehaviorRotate(wormhole);
 			BlackHoles.push(wormhole);
 			Flockable.push(wormhole);
+	}
+
+
+	function createWanderTest()
+	{
+		var boid = new Ship(game);
+  		boid.initalize(1,'ship1');
+  		var xpos = game.world.centerX-400 + Math.floor(Math.random()*200);
+	 	  var ypos = game.world.centerY-300 + Math.floor(Math.random()*200);
+  		var pos = new Phaser.Point(xpos,ypos);
+  		var vel = new Phaser.Point(30,10)
+  		boid.create(pos,vel, 0, isDebugging);
+  		boid.category = 1;
+  		boid.behavior = new BehaviorWander(boid);
+  		Flock.push(boid);
+  		Flockable.push(boid);
 	}
 
 	function toggleGroupOne(){

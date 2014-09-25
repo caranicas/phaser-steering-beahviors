@@ -82,13 +82,18 @@ moveUtils = function(){
     }
     return false;
   }
+
+  function getRandomBetween(min, max) {
+    return Math.random() * (max - min) + min;
+  }
   return{
     facing:facing,
     seek:seek,
     limit:limit,
     loopWalls:loopWalls,
     avoidWalls:avoidWalls,
-    lineIntersectsCircle:lineIntersectsCircle
+    lineIntersectsCircle:lineIntersectsCircle,
+    getRandomBetween:getRandomBetween
 
   }
 };
