@@ -1,5 +1,5 @@
 function Boid(game) {
-  GameEntity.call(this, game); // call super constructor.
+  Entity.call(this, game); // call super constructor.
 
   // Behavior Objects
 	this.sepInfluence = 10;
@@ -33,7 +33,7 @@ function Boid(game) {
 }
 
 // subclass extends superclass
-Boid.prototype = Object.create(GameEntity.prototype);
+Boid.prototype = Object.create(Entity.prototype);
 Boid.prototype.constructor = Boid;
 
 
@@ -42,7 +42,7 @@ Boid.prototype.create = function(pos,vel,angle, debug){
 
 		//alert('BOID CREATE');
 
-		GameEntity.prototype.create.call(this, pos,vel,angle, debug);
+		Entity.prototype.create.call(this, pos,vel,angle, debug);
 		if(debug)
 		{
 			this.debugVel = new Phaser.Line(0,0,0,0);
@@ -55,7 +55,7 @@ Boid.prototype.create = function(pos,vel,angle, debug){
 Boid.prototype.debugUpdate = function()
 {
 
-	GameEntity.prototype.debugUpdate.call(this);
+	Entity.prototype.debugUpdate.call(this);
 	this.debugVel.start.x = this.sprite.position.x;
 	this.debugVel.start.y = this.sprite.position.y;
 	this.debugVel.end.x = this.sprite.position.x + this.sprite.body.velocity.x;
@@ -65,6 +65,6 @@ Boid.prototype.debugUpdate = function()
 
 Boid.prototype.debugRender = function(){
 
-	GameEntity.prototype.debugRender.call(this);
+	Entity.prototype.debugRender.call(this);
 	this.game.debug.geom(this.debugVel,'blue', true);
 }

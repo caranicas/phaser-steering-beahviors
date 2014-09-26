@@ -1,17 +1,17 @@
-GameEntity = function (game) {
+Entity = function (game) {
 
 	// Phaser objects
 	this.game = game;
 	this.sprite = null
 
-	//
+	// data for comparisons
 	this.category = -1;
 
 	// function
 	this.behavior = null;;
 };
 
-GameEntity.prototype.initalize = function(index, asset){
+Entity.prototype.initalize = function(index, asset){
 	this.sprite = this.game.add.sprite(0,0,asset);
 	this.sprite.id = index;
 	this.sprite.anchor.set(0.5);
@@ -19,7 +19,7 @@ GameEntity.prototype.initalize = function(index, asset){
 	return this;
 }
 
-GameEntity.prototype.create = function(pos,vel,angle, debug){
+Entity.prototype.create = function(pos,vel,angle, debug){
 
 		this.sprite.angle = angle;
 		this.sprite.position.x = pos.x;
@@ -30,17 +30,17 @@ GameEntity.prototype.create = function(pos,vel,angle, debug){
 		return this;
 }
 
-GameEntity.prototype.debugUpdate = function(){
+Entity.prototype.debugUpdate = function(){
 
 }
 
-GameEntity.prototype.debugRender = function(){
+Entity.prototype.debugRender = function(){
 	this.game.debug.spriteBounds(this.sprite);
 
 }
 
 
 // call afactory method that pushes all relevent information into object
-GameEntity.prototype.syncWithFly = function(){
+Entity.prototype.syncWithFly = function(){
 
 }
