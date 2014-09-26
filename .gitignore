@@ -3,6 +3,6 @@ Thumbs.db
 .DS_Store
 
 # Library
-scripts/libs
+#scripts/libs
 
 # Build
