@@ -4,14 +4,9 @@ $(document).ready(function() {
 
 	var numBoids = 20;
   var Flock = [];
-  var BlackHoles = [];
   var Flockable = [];
-  var Test = [];
-	var OneSeek = false;
-	var TwoSeek = false;
-	var WormHole;
 	var self = this;
-	var isDebugging = true;
+	var isDebugging = false;
 
   function preload () {
   	game.load.image('spaceBG', 'assets/space.jpg');
@@ -28,17 +23,18 @@ $(document).ready(function() {
 
 	function createWanderTest()
 	{
-			var boid = new WanderingShip(game);
-  		boid.initalize(1,'ship1');
-  		var xpos = game.world.centerX-400 + Math.floor(Math.random()*200);
-	 	  var ypos = game.world.centerY-300 + Math.floor(Math.random()*200);
-  		var pos = new Phaser.Point(xpos,ypos);
-  		var vel = new Phaser.Point(30,10)
-  		boid.create(pos,vel, 0, isDebugging);
-  		boid.category = 1;
-  		boid.behavior = new BehaviorWander(boid);
-  		Flock.push(boid);
-  		Flockable.push(boid);
+      for(var i = 0; i < numBoids; ++i)
+      {
+  			var boid = new WanderingShip(game);
+    		boid.initalize(i,'ship1');
+    		var pos = new Phaser.Point( game.world.centerX, game.world.centerY);
+    		var vel = new Phaser.Point(0,-10)
+    		boid.create(pos,vel, 0, isDebugging);
+    		boid.category = 1;
+    		boid.behavior = new BehaviorWander(boid);
+    		Flock.push(boid);
+    		Flockable.push(boid);
+      }
 	}
 
    //LOOP

@@ -9,9 +9,11 @@ moveUtils = function(){
   function seek(target,position,velocity,maxSpeed,maxForce)
   {
   	var desired = Phaser.Point.subtract(target,position);
-  	desired.setMagnitude(maxSpeed);
-    var steer = Phaser.Point.subtract(desired,velocity);
-    return limit(steer, maxForce);
+  	return desired.setMagnitude(maxSpeed);
+    //var steer = Phaser.Point.subtract(desired,velocity);
+    //return steer;
+    //, maxForce);
+
   }
 
   function limit(vector, max)
