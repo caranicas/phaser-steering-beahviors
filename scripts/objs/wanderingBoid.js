@@ -1,12 +1,14 @@
 function WanderingBoid(game) {
 
   Boid.call(this, game); // call super constructor.
-	this.wanderCircleRad = 50;
+
+	this.wanderRadialMag = 50;
 	this.distanceExtension = 100;
-	this.wanderAngle = -270;
+	this.wanderAngle = 30;
 	this.wanderVariance = 40;
 	this.wanderDate = new Date();
-	this.wanderTime = 150;
+	this.wanderDelta = 150;
+	this.wanderWeight = 2.5;
 
 	// Debug Info
 	this.debugWanderExtendCatch = null;
@@ -40,7 +42,7 @@ WanderingBoid.prototype.create = function(pos,vel,angle, debug){
 		this.debugDisplacmentDisplay = new Phaser.Line(0,0,0,0);
 		this.debugSeekTestDisplay = new Phaser.Line(0,0,0,0);
 		this.debugSeekActualDisplay = new Phaser.Line(0,0,0,0);
-		this.debugCircleDisplay = new Phaser.Circle(0,0, this.wanderCircleRad*2)
+		this.debugCircleDisplay = new Phaser.Circle(0,0, this.wanderRadialMag*2)
 	}
 
 	return this;

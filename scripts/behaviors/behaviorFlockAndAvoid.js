@@ -1,35 +1,37 @@
-function BehaviorFlockAvoidAll(boid) {
+function BehaviorFlockAndAvoid(boid) {
 	Behavior.call(this, boid); // call super constructor.
 }
 
 
 // subclass extends superclass
-BehaviorFlockAvoidAll.prototype = Object.create(Behavior.prototype);
-BehaviorFlockAvoidAll.prototype.constructor = BehaviorFlockAvoidAll;
+BehaviorFlockAndAvoid.prototype = Object.create(Behavior.prototype);
+BehaviorFlockAndAvoid.prototype.constructor = BehaviorFlockAndAvoid;
 
-BehaviorFlockAvoidAll.prototype = {
+BehaviorFlockAndAvoid.prototype = {
 
-	update:function(objs){
-		var separation = this.calcSeparate(objs);
-		var alignment = this.calcAlignment(objs);
-		var cohesion = this.calcCohesion(objs);
+	update:function(flockObjs, avoidObjs){
+
+		var separation = this.calcSeparate(flockObjs);
+		var alignment = this.calcAlignment(flockObjs);
+		var cohesion = this.calcCohesion(flockObjs);
+		var avoid = this.calcAvoidObjs(avoidObjs);
 		separation = separation.multiply(this.boid.sepWeight, this.boid.sepWeight);
     alignment = alignment.multiply(this.boid.aligWeight,this.boid.aligWeight);
     cohesion = cohesion.multiply(this.boid.cohWeight,this.boid.cohWeight);
-    var avoid = MovementUtils.avoidWalls(this.boid.sprite.position,this.boid.game.world, 50,1);
-    var avoidTwo = this.calcCheckColision(objs);
 
     this.boid.sprite.body.acceleration.add(separation.x,separation.y);
     this.boid.sprite.body.acceleration.add(alignment.x,alignment.y);
     this.boid.sprite.body.acceleration.add(cohesion.x,cohesion.y);
     this.boid.sprite.body.acceleration.add(avoid.x,avoid.y);
-   	this.boid.sprite.body.acceleration.add(avoidTwo.x,avoidTwo.y);
-    this.boid.sprite.body.velocity.add(this.boid.sprite.body.acceleration.x, this.boid.sprite.body.acceleration.y)
-    this.boid.sprite.body.acceleration.multiply(0,0);
-    this.boid.sprite.angle = MovementUtils.facing(this.boid.sprite.body.velocity);
+
+   	// Handle the Orientaion and other post velocity additions
+		Behavior.prototype.update.call(this);
+
+		MovementUtils.loopWalls(this.boid.sprite.position,this.boid.game.world);
+
 	},
 
-	calcCheckColision:function(objs)
+	calcAvoidObjs:function(objs)
 	{
 		var ahead = new Phaser.Point(0,0);
 		var aheadNorm = new Phaser.Point(0,0);

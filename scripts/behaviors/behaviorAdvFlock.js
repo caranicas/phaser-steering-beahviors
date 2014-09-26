@@ -24,9 +24,8 @@ BehaviorAdvFlock.prototype = {
     this.boid.sprite.body.acceleration.add(cohesion.x,cohesion.y);
     this.boid.sprite.body.acceleration.add(avoid.x,avoid.y);
 
-    this.boid.sprite.body.velocity.add(this.boid.sprite.body.acceleration.x, this.boid.sprite.body.acceleration.y)
-    this.boid.sprite.body.acceleration.multiply(0,0);
-    this.boid.sprite.angle = MovementUtils.facing(this.boid.sprite.body.velocity);
+		// Handle the Orientaion and other post velocity additions
+		Behavior.prototype.update.call(this);
 
 	},
 

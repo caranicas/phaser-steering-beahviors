@@ -8,7 +8,8 @@ function Boid(game) {
 
 	this.sepWeight = 1.8;
 	this.cohWeight = 0.1;
-	this.aligWeight = 0.3;
+	this.aligWeight = 0.5;
+
 	this.maxSpeed = 70;
 	this.minSpeed = 30;
 	this.maxForce = 1;
