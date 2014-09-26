@@ -14,7 +14,7 @@ function Boid(game) {
 	this.maxForce = 1;
 	this.maxAvoid = 3;
 	this.maxSeeAhead = 100;
-	this.debugVector = null;
+	this.debugVel = null;
 
 	this.wanderCircleRad = 50;
 	this.wanderCircleDist = 100;
@@ -30,13 +30,41 @@ function Boid(game) {
 	this.debugExtension = new Phaser.Point(0,0);
 	this.debugDisplacemt = new Phaser.Point(0,0);
 
-	//Categories
-	this.category = -1;
-	// function
-	this.behavior = null;
 }
 
 // subclass extends superclass
 Boid.prototype = Object.create(GameEntity.prototype);
 Boid.prototype.constructor = Boid;
 
+
+
+Boid.prototype.create = function(pos,vel,angle, debug){
+
+		//alert('BOID CREATE');
+
+		GameEntity.prototype.create.call(this, pos,vel,angle, debug);
+		if(debug)
+		{
+			this.debugVel = new Phaser.Line(0,0,0,0);
+		}
+
+		return this;
+}
+
+
+Boid.prototype.debugUpdate = function()
+{
+
+	GameEntity.prototype.debugUpdate.call(this);
+	this.debugVel.start.x = this.sprite.position.x;
+	this.debugVel.start.y = this.sprite.position.y;
+	this.debugVel.end.x = this.sprite.position.x + this.sprite.body.velocity.x;
+	this.debugVel.end.y = this.sprite.position.y + this.sprite.body.velocity.y;
+
+}
+
+Boid.prototype.debugRender = function(){
+
+	GameEntity.prototype.debugRender.call(this);
+	this.game.debug.geom(this.debugVel,'blue', true);
+}

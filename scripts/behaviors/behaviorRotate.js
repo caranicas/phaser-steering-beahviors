@@ -11,6 +11,6 @@ BehaviorRotate.prototype.constructor = BehaviorRotate;
 BehaviorRotate.prototype = {
 
 	update:function(){
-		this.boid.entity.angle = this.boid.entity.angle+1;
+		this.boid.sprite.angle = this.boid.sprite.angle+1;
 	}
 }

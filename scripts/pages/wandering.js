@@ -26,70 +26,9 @@ $(document).ready(function() {
    	createWanderTest()
 	}
 
-	function createFlockingTest()
-	{
-	  createFlockOne();
-    createFlockTwo();
-    createWormholeOne();
-    createWormholeTwo();
-	}
-
-	function createAvoidanceTest()
-	{
-			createFlockOne();
-			var wormhole = new Wormhole(game);
-			wormhole.create(140,230, toggleGroupTwo, self);
-			wormhole.behavior = new BehaviorRotate(wormhole);
-			BlackHoles.push(wormhole);
-			Flockable.push(wormhole);
-
-			var wormhole = new Wormhole(game);
-			wormhole.create(100,500, toggleGroupTwo, self);
-			wormhole.behavior = new BehaviorRotate(wormhole);
-			BlackHoles.push(wormhole);
-			Flockable.push(wormhole);
-
-			var wormhole = new Wormhole(game);
-			wormhole.create(295,340, toggleGroupTwo, self);
-			wormhole.behavior = new BehaviorRotate(wormhole);
-			BlackHoles.push(wormhole);
-			Flockable.push(wormhole);
-
-			var wormhole = new Wormhole(game);
-			wormhole.create(380,175, toggleGroupTwo, self);
-			wormhole.behavior = new BehaviorRotate(wormhole);
-			BlackHoles.push(wormhole);
-			Flockable.push(wormhole);
-
-			var wormhole = new Wormhole(game);
-			wormhole.create(500,430, toggleGroupTwo, self);
-			wormhole.behavior = new BehaviorRotate(wormhole);
-			BlackHoles.push(wormhole);
-			Flockable.push(wormhole);
-
-			var wormhole = new Wormhole(game);
-			wormhole.create(600,200, toggleGroupTwo, self);
-			wormhole.behavior = new BehaviorRotate(wormhole);
-			BlackHoles.push(wormhole);
-			Flockable.push(wormhole);
-
-			var wormhole = new Wormhole(game);
-			wormhole.create(650,350, toggleGroupTwo, self);
-			wormhole.behavior = new BehaviorRotate(wormhole);
-			BlackHoles.push(wormhole);
-			Flockable.push(wormhole);
-
-			var wormhole = new Wormhole(game);
-			wormhole.create(350,500, toggleGroupTwo, self);
-			wormhole.behavior = new BehaviorRotate(wormhole);
-			BlackHoles.push(wormhole);
-			Flockable.push(wormhole);
-	}
-
-
 	function createWanderTest()
 	{
-		var boid = new Ship(game);
+			var boid = new WanderingShip(game);
   		boid.initalize(1,'ship1');
   		var xpos = game.world.centerX-400 + Math.floor(Math.random()*200);
 	 	  var ypos = game.world.centerY-300 + Math.floor(Math.random()*200);
@@ -101,110 +40,6 @@ $(document).ready(function() {
   		Flock.push(boid);
   		Flockable.push(boid);
 	}
-
-	function toggleGroupOne(){
-		OneSeek = !OneSeek;
-		group = selectGroup(1);
-
-		if(OneSeek)
-		{
-
-			for(var i = 0; i < group.length; ++i)
-		  {
-		  		group[i].behavior = new BehaviorFind(group[i],BlackHoles[0]);
-		  }
-		}
-		else
-		{
-			for(var i = 0; i < group.length; ++i)
-		  {
-		  	group[i].behavior = new BehaviorAdvFlock(group[i]);
-		  }
-		}
-	}
-	function toggleGroupTwo(){
-		TwoSeek = !TwoSeek;
-		group = selectGroup(2);
-		if(TwoSeek)
-		{
-			for(var i = 0; i < group.length; ++i)
-		  {
-		  	group[i].behavior = new BehaviorFind(group[i],BlackHoles[1]);
-		  }
-		}
-		else
-		{
-			for(var i = 0; i < group.length; ++i)
-		  {
-		  	group[i].behavior = new BehaviorAdvFlock(group[i]);
-		  }
-		}
-	}
-
-	function selectGroup(category)
-	{
-		group = [];
-		for(var i = 0; i < Flock.length; ++i)
-		{
-			if(Flock[i].category == category)
-			{
-				group.push(Flock[i]);
-			}
-		}
-
-		return group;
-	}
-	function createWormholeOne(){
-		var wormhole = new Wormhole(game);
-		wormhole.create(100,100, toggleGroupOne, self);
-		wormhole.behavior = new BehaviorRotate(wormhole);
-
-		debugger;
-		BlackHoles.push(wormhole);
-		Flockable.push(wormhole);
-	}
-	function createWormholeTwo(){
-		var wormhole = new Wormhole(game);
-		wormhole.create(700,500, toggleGroupTwo, self);
-		wormhole.behavior = new BehaviorRotate(wormhole);
-		BlackHoles.push(wormhole);
-		Flockable.push(wormhole);
-	}
-
-	function createFlockOne(){
-    for(var i = 0; i < numBoids; ++i)
-    {
-    		var boid = new Ship(game);
-    		boid.initalize(i,'ship1');
-    		var xpos = game.world.centerX-400 + Math.floor(Math.random()*200);
-		 	  var ypos = game.world.centerY-300 + Math.floor(Math.random()*200);
-    		var pos = new Phaser.Point(xpos,ypos);
-    		var vel = new Phaser.Point(30,10)
-    		boid.create(pos,vel, 0, isDebugging);
-    		boid.category = 1;
-    		boid.behavior = new BehaviorFlockAvoidAll(boid);
-    		Flock.push(boid);
-    		Flockable.push(boid);
-    }
-  }
-
-  function createFlockTwo(){
-    for(var i = 0; i < numBoids; ++i)
-    {
-    		var boid = new Ship(game);
-    		boid.initalize(i,'ship2');
-
-    		var xpos = game.world.centerX+200 + Math.floor(Math.random()*200);
-		 	  var ypos = game.world.centerY+ Math.floor(Math.random()*200);
-    		var pos = new Phaser.Point(xpos,ypos);
-    		var vel = new Phaser.Point(-30,-10)
-    		boid.create(pos,vel, 0, isDebugging);
-    		boid.category = 2;
-    		boid.behavior = new BehaviorAdvFlock(boid);
-    		Flock.push(boid);
-    		Flockable.push(boid);
-    }
-  }
 
    //LOOP
   function update(){
@@ -218,18 +53,7 @@ $(document).ready(function() {
   		}
   	}
   }
-	function seekWormhole(cur){
-		for(var i = 0; i < numBoids; ++i)
-		{
-			var cur = Flock[i];
-			var sVec = seek(WormHole.entity.body.position, cur)
-			cur.entity.body.acceleration.add(sVec.x,sVec.y);
-			cur.entity.body.velocity.add(cur.entity.body.acceleration.x,cur.entity.body.acceleration.y)
-	    cur.entity.body.acceleration.multiply(0,0);
-			loopWalls(cur);
-			determineDirection(cur);
-		}
-	}
+
   function render(){
 
 		if(isDebugging)

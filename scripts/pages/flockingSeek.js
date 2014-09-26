@@ -30,8 +30,8 @@ $(document).ready(function() {
 	{
 	  createFlockOne();
     createFlockTwo();
-   // createWormholeOne();
-   // createWormholeTwo();
+   	createWormholeOne();
+   	createWormholeTwo();
 	}
 
 	function createWanderTest()
@@ -103,14 +103,20 @@ $(document).ready(function() {
 	}
 	function createWormholeOne(){
 		var wormhole = new Wormhole(game);
-		wormhole.create(100,230, toggleGroupOne, self);
+		wormhole.initalize(1,'wormhole');
+		var pos = new Phaser.Point(100,230);
+    var vel = new Phaser.Point(0,0)
+		wormhole.create(pos,vel,0,isDebugging,toggleGroupOne, self);
 		wormhole.behavior = new BehaviorRotate(wormhole);
 		BlackHoles.push(wormhole);
 		Flockable.push(wormhole);
 	}
 	function createWormholeTwo(){
 		var wormhole = new Wormhole(game);
-		wormhole.create(500,500, toggleGroupTwo, self);
+		wormhole.initalize(2,'wormhole');
+		var pos = new Phaser.Point(500,500);
+    var vel = new Phaser.Point(0,0)
+		wormhole.create(pos,vel,0, isDebugging, toggleGroupTwo, self);
 		wormhole.behavior = new BehaviorRotate(wormhole);
 		BlackHoles.push(wormhole);
 		Flockable.push(wormhole);
@@ -127,7 +133,7 @@ $(document).ready(function() {
     		var vel = new Phaser.Point(30,10)
     		boid.create(pos,vel, 0, isDebugging);
     		boid.category = 1;
-    		boid.behavior = new BehaviorFlockAvoidAll(boid);
+    		boid.behavior = new BehaviorAdvFlock(boid);
     		Flock.push(boid);
     		Flockable.push(boid);
     }
@@ -163,18 +169,7 @@ $(document).ready(function() {
   		}
   	}
   }
-	function seekWormhole(cur){
-		for(var i = 0; i < numBoids; ++i)
-		{
-			var cur = Flock[i];
-			var sVec = seek(WormHole.entity.body.position, cur)
-			cur.entity.body.acceleration.add(sVec.x,sVec.y);
-			cur.entity.body.velocity.add(cur.entity.body.acceleration.x,cur.entity.body.acceleration.y)
-	    cur.entity.body.acceleration.multiply(0,0);
-			loopWalls(cur);
-			determineDirection(cur);
-		}
-	}
+
   function render(){
 
 		if(isDebugging)

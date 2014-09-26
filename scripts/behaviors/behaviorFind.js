@@ -9,7 +9,6 @@ BehaviorFind.prototype = Object.create(Behavior.prototype);
 BehaviorFind.prototype.constructor = BehaviorFind;
 
 
-
 BehaviorFind.prototype = {
 
 	update:function(){

@@ -73,7 +73,7 @@ BehaviorFlockAvoidWormhole.prototype = {
 					{
 
 						// Check if it is in danger of colliding with it. Dont alter path if object is moving faster
-						if(this.boid.sprite.velocity.getMagnitude() > tester.velocity.getMagnitude())
+						if(this.boid.sprite.body.velocity.getMagnitude() > tester.body.velocity.getMagnitude())
 						{
 							if(closest == null)
 							{

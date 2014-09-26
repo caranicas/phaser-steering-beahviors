@@ -123,7 +123,6 @@ BehaviorAdvFlock.prototype = {
 			if (this.boid != objs[j])
 			{
 				var distance = Phaser.Math.distance(this.boid.sprite.position.x, this.boid.sprite.position.y, objs[j].sprite.position.x, objs[j].sprite.position.y);
-
 				if((distance > 0) && (distance < this.boid.sepInfluence))
 				{
 					var diff = Phaser.Point.subtract(this.boid.sprite.position, objs[j].sprite.position);
