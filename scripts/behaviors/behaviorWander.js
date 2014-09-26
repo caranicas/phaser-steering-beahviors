@@ -16,24 +16,21 @@ BehaviorWander.prototype = {
 		{
 			this.boid.wanderDate = now;
 			var wand = this.wander();
-	    this.boid.entity.body.acceleration.add(wand.x,wand.y);
-	    this.boid.entity.body.velocity.add(this.boid.entity.body.acceleration.x, this.boid.entity.body.acceleration.y)
-	    this.boid.entity.body.acceleration.multiply(0,0);
+			debugger;
+			this.boid.wanderDebugTragectory = wand;
+	    this.boid.sprite.body.acceleration.add(wand.x,wand.y);
+	    this.boid.sprite.body.velocity.add(this.boid.sprite.body.acceleration.x, this.boid.sprite.body.acceleration.y)
+	    this.boid.sprite.body.acceleration.multiply(0,0);
 	  }
-	  this.boid.entity.body.velocity.setMagnitude(this.boid.maxSpeed);
-    this.boid.entity.angle = MovementUtils.facing(this.boid.entity.body.velocity);
-		MovementUtils.loopWalls(this.boid.entity.position,this.boid.game.world);
+	  this.boid.sprite.body.velocity.setMagnitude(this.boid.maxSpeed);
+    this.boid.sprite.angle = MovementUtils.facing(this.boid.sprite.body.velocity);
+		MovementUtils.loopWalls(this.boid.sprite.position,this.boid.game.world);
 	},
 
 	extendCircle:function(){
-		var normalVel = new Phaser.Point(this.boid.entity.body.velocity.x,this.boid.entity.body.velocity.y)
-		debugger;
+		var normalVel = new Phaser.Point(this.boid.sprite.body.velocity.x,this.boid.sprite.body.velocity.y)
 		normalVel.setMagnitude(this.boid.wanderCircleDist);
-		debugger;
-		var extend = Phaser.Point.add(normalVel, this.boid.entity.position);
-		console.log('my pos', this.boid.entity.position)
-		console.log('extend pos', extend)
-		debugger;
+		var extend = Phaser.Point.add(normalVel, this.boid.sprite.position);
 		return extend;
 	},
 
@@ -52,7 +49,7 @@ BehaviorWander.prototype = {
 	},
 
 	updateAngle:function(){
-		this.boid.wanderAngle += MovementUtils.getRandomBetween(this.boid.wanderVariance,-this.boid.wanderVariance);
+		this.boid.wanderAngle =0;//+= MovementUtils.getRandomBetween(this.boid.wanderVariance,-this.boid.wanderVariance);
 		console.log('newAngle', this.boid.wanderAngle);
 	},
 
