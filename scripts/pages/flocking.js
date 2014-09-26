@@ -79,18 +79,8 @@ $(document).ready(function() {
   		}
   	}
   }
-	function seekWormhole(cur){
-		for(var i = 0; i < numBoids; ++i)
-		{
-			var cur = Flock[i];
-			var sVec = seek(WormHole.entity.body.position, cur)
-			cur.entity.body.acceleration.add(sVec.x,sVec.y);
-			cur.entity.body.velocity.add(cur.entity.body.acceleration.x,cur.entity.body.acceleration.y)
-	    cur.entity.body.acceleration.multiply(0,0);
-			loopWalls(cur);
-			determineDirection(cur);
-		}
-	}
+
+
   function render(){
 
 		if(isDebugging)
