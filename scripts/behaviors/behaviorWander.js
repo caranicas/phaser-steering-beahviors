@@ -12,6 +12,7 @@ BehaviorWander.prototype = {
 	update:function(){
 		var now = new Date();
 		var diff = now - this.boid.wanderDate;
+		debugger;
 		if(diff > this.boid.wanderDelta)
 		{
 			this.boid.wanderDate = now;
@@ -22,7 +23,6 @@ BehaviorWander.prototype = {
 
 		// Handle the Orientaion and other post velocity additions
 		Behavior.prototype.update.call(this);
-
 		MovementUtils.loopWalls(this.boid.sprite.position,this.boid.game.world);
 	},
 
@@ -31,6 +31,7 @@ BehaviorWander.prototype = {
 		normalVel.setMagnitude(this.boid.distanceExtension);
 		var extend = Phaser.Point.add(normalVel, this.boid.sprite.position);
 		this.boid.debugWanderExtendCatch = extend;
+		debugger;
 		return extend;
 	},
 
