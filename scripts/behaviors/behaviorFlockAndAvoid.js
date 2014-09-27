@@ -38,6 +38,7 @@ BehaviorFlockAndAvoid.prototype = {
 		aheadNorm = Phaser.Point.normalize(this.boid.sprite.body.velocity, aheadNorm)
 		var aheadVel =  aheadNorm.multiply(this.boid.maxSeeAhead,this.boid.maxSeeAhead);
 		ahead = new Phaser.Point.add(this.boid.sprite.position,aheadVel,ahead);
+		this.boid.debugAheadCatch = ahead;
 
 		var aheadTwo = new Phaser.Point(0,0);
 		var aheadTwoNorm = new Phaser.Point(0,0);

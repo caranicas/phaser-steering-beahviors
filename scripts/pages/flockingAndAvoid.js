@@ -52,8 +52,8 @@ $(document).ready(function() {
     {
   		var boid = new Ship(game);
   		boid.initalize(i,'ship2');
-  		var xpos = game.world.centerX-400 + Math.floor(Math.random()*200);
-	 	  var ypos = game.world.centerY-300 + Math.floor(Math.random()*200);
+  		var xpos = game.world.centerX+350 + Math.floor(Math.random()*200);
+	 	  var ypos = game.world.centerY+150 + Math.floor(Math.random()*200);
   		var pos = new Phaser.Point(xpos,ypos);
   		var vel = new Phaser.Point(-30,-10)
   		boid.create(pos,vel, 0, isDebugging);
@@ -86,17 +86,6 @@ $(document).ready(function() {
         FlockTwo[i].debugUpdate();
       }
     }
-    /*
-    for (var i = 0; i < Flockable.length; i++)
-  	{
-  		Flockable[i].behavior.update(Flockable);
-
-  		if(isDebugging)
-  		{
-  		  Flockable[i].debugUpdate();
-  		}
-  	}
-    */
   }
 
   function render(){

@@ -17,7 +17,11 @@ function Boid(game) {
 	this.maxSeeAhead = 100;
 
 
+	this.debugAheadCatch = null
+
+
 	this.debugVel = null;
+	this.debugLooK = null;
 }
 
 // subclass extends superclass
@@ -32,6 +36,7 @@ Boid.prototype.create = function(pos,vel,angle, debug) {
 	if(debug)
 	{
 		this.debugVel = new Phaser.Line(0,0,0,0);
+		this.debugLooK = new Phaser.Line(0,0,0,0);
 	}
 
 	return this;
@@ -44,10 +49,17 @@ Boid.prototype.debugUpdate = function() {
 	this.debugVel.start.y = this.sprite.position.y;
 	this.debugVel.end.x = this.sprite.position.x + this.sprite.body.velocity.x;
 	this.debugVel.end.y = this.sprite.position.y + this.sprite.body.velocity.y;
+
+	this.debugLooK.start.x = this.sprite.position.x;
+	this.debugLooK.start.y = this.sprite.position.y;
+	this.debugLooK.end.x =  this.debugAheadCatch.x;
+	this.debugLooK.end.y = this.debugAheadCatch.y;
+
 }
 
 Boid.prototype.debugRender = function() {
 
 	Entity.prototype.debugRender.call(this);
+	this.game.debug.geom(this.debugLooK,'yellow', true);
 	this.game.debug.geom(this.debugVel,'blue', true);
 }

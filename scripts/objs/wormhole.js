@@ -11,15 +11,11 @@ Wormhole.prototype.constructor = Wormhole;
 Wormhole.prototype = {
 
 	initalize:function(index, asset) {
-
-		debugger
 		Immovable.prototype.initalize.call(this,index, asset);
 		return this;
 	},
 
 	create:function( pos,vel,angle, debug, clickhandle, scope) {
-
-		debugger;
 		Immovable.prototype.create.call(this, pos,vel,angle, debug);
 		this.sprite.inputEnabled = true;
 		this.sprite.events.onInputDown.add(clickhandle, scope);
