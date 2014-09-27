@@ -10,26 +10,35 @@ BehaviorFlockAvoidWormhole.prototype.constructor = BehaviorFlockAvoidWormhole;
 BehaviorFlockAvoidWormhole.prototype = {
 
 	update:function(objs){
-		var separation = this.calcSeparate(objs);
+
+	  var avoidObjs = this.calcAvoidObjs(objs);
+	  var avoidWall = MovementUtils.avoidWalls(this.boid.sprite.position,this.boid.game.world, 50,1);
+
+
+    var separation = this.calcSeparate(objs);
 		var alignment = this.calcAlignment(objs);
 		var cohesion = this.calcCohesion(objs);
 		separation = separation.multiply(this.boid.sepWeight, this.boid.sepWeight);
     alignment = alignment.multiply(this.boid.aligWeight,this.boid.aligWeight);
     cohesion = cohesion.multiply(this.boid.cohWeight,this.boid.cohWeight);
-    var avoid = MovementUtils.avoidWalls(this.boid.sprite.position,this.boid.game.world, 50,1);
-    var avoidTwo = this.calcCheckColision(objs);
 
     this.boid.sprite.body.acceleration.add(separation.x,separation.y);
     this.boid.sprite.body.acceleration.add(alignment.x,alignment.y);
     this.boid.sprite.body.acceleration.add(cohesion.x,cohesion.y);
-    this.boid.sprite.body.acceleration.add(avoid.x,avoid.y);
-   	this.boid.sprite.body.acceleration.add(avoidTwo.x,avoidTwo.y);
-    this.boid.sprite.body.velocity.add(this.boid.sprite.body.acceleration.x, this.boid.sprite.body.acceleration.y)
-    this.boid.sprite.body.acceleration.multiply(0,0);
-    this.boid.sprite.angle = MovementUtils.facing(this.boid.sprite.body.velocity);
+
+    this.boid.sprite.body.acceleration.add(avoidObjs.x,avoidObjs.y);
+    this.boid.sprite.body.acceleration.add(avoidWall.x,avoidWall.y);
+
+
+    // Handle the Orientaion and other post velocity additions
+		Behavior.prototype.update.call(this);
+
+		this.boid.sprite.angle = MovementUtils.facing(this.boid.sprite.body.velocity);
+
+
 	},
 
-	calcCheckColision:function(objs)
+	calcAvoidObjs:function(objs)
 	{
 		var ahead = new Phaser.Point(0,0);
 		var aheadNorm = new Phaser.Point(0,0);
@@ -101,18 +110,20 @@ BehaviorFlockAvoidWormhole.prototype = {
 
 		var total = new Phaser.Point(0,0);
 		var count = 0;
-		for(var j = 0; j < objs.length; ++j)
-		{
-			var test = (objs[j] instanceof Wormhole);
-			//console.log('test',test);
+	 	for(var j = 0; j < objs.length; ++j)
+	  {
+	  	var test = (objs[j] instanceof Wormhole);
+	  	//console.log('test',test);
 
-			if (this.boid != objs[j] && !test)
+	  	if (this.boid != objs[j] && !test)
 			{
 				var distance = Phaser.Math.distance(this.boid.sprite.position.x, this.boid.sprite.position.y, objs[j].sprite.position.x, objs[j].sprite.position.y);
 				if(distance > 0 && distance < this.boid.aligInfluence)
 				{
+
 					total.add(objs[j].sprite.body.velocity.x, objs[j].sprite.body.velocity.y)
 					count++;
+
 					// Have Objects in same category extra align
 					if(objs[j].category == this.boid.category)
 					{
@@ -125,6 +136,7 @@ BehaviorFlockAvoidWormhole.prototype = {
 
 		if (count > 0)
 		{
+
 			total = total.divide(count,count);
 			total.normalize();
 			total.setMagnitude(this.boid.maxSpeed);
@@ -140,15 +152,14 @@ BehaviorFlockAvoidWormhole.prototype = {
 		}
 
 	},
+	calcCohesion:function(objs){
 
-	calcCohesion:function(objs)
-	{
 		var total = new Phaser.Point(0,0);
 		var count = 0;
 		for(var j = 0; j < objs.length; ++j)
-		{
-			var test = (objs[j] instanceof Wormhole);
-			if (this.boid != objs[j] && !test)
+	  {
+	  	var test = (objs[j] instanceof Wormhole);
+	  	if (this.boid != objs[j] && !test)
 			{
 				var distance = Phaser.Math.distance(this.boid.sprite.position.x, this.boid.sprite.position.y, objs[j].sprite.position.x, objs[j].sprite.position.y);
 				if (distance > 0 && distance < this.boid.cohInfluence)
@@ -156,6 +167,7 @@ BehaviorFlockAvoidWormhole.prototype = {
 					total.add(objs[j].sprite.position.x,  objs[j].sprite.position.y)
 					count++;
 				}
+
 				// Have Objects in same category extra cohese
 				if(objs[j].category == this.boid.category)
 				{
@@ -163,7 +175,6 @@ BehaviorFlockAvoidWormhole.prototype = {
 					count++;
 				}
 			}
-
 		}
 
 		if (count > 0)
@@ -178,17 +189,16 @@ BehaviorFlockAvoidWormhole.prototype = {
 
 	},
 
-	calcSeparate:function(objs)
-	{
+	calcSeparate:function(objs){
 		var steer = new Phaser.Point(0,0);
 		var count = 0;
 		var vector = new Phaser.Point(0,0);
 		for(var j = 0; j < objs.length; ++j)
 		{
+
 			if (this.boid != objs[j])
 			{
 				var distance = Phaser.Math.distance(this.boid.sprite.position.x, this.boid.sprite.position.y, objs[j].sprite.position.x, objs[j].sprite.position.y);
-
 				if((distance > 0) && (distance < this.boid.sepInfluence))
 				{
 					var diff = Phaser.Point.subtract(this.boid.sprite.position, objs[j].sprite.position);
@@ -225,4 +235,5 @@ BehaviorFlockAvoidWormhole.prototype = {
 		return steer;
 
 		}
+
 }
