@@ -3,10 +3,10 @@ function WanderingBoid(game) {
   Boid.call(this, game); // call super constructor.
 	this.wanderCircleRad = 50;
 	this.distanceExtension = 100;
-	this.wanderAngle = -270;
-	this.wanderVariance = 40;
+	this.wanderAngle = 0;
+	this.wanderVariance = 180;
 	this.wanderDate = new Date();
-	this.wanderTime = 150;
+	this.wanderTime = 1;
 
 	// Debug Info
 	this.debugWanderExtendCatch = null;

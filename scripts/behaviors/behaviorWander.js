@@ -21,7 +21,8 @@ BehaviorWander.prototype = {
 			this.boid.sprite.body.velocity.add(this.boid.sprite.body.acceleration.x, this.boid.sprite.body.acceleration.y)
 			this.boid.sprite.body.acceleration.multiply(0,0);
 		}
-		this.boid.sprite.body.velocity.setMagnitude(this.boid.maxSpeed);
+
+		this.boid.sprite.body.velocity = MovementUtils.limit(this.boid.sprite.body.velocity,this.boid.maxSpeed);
 		this.boid.sprite.angle = MovementUtils.facing(this.boid.sprite.body.velocity);
 		MovementUtils.loopWalls(this.boid.sprite.position,this.boid.game.world);
 	},
