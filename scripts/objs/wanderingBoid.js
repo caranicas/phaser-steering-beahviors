@@ -4,11 +4,11 @@ function WanderingBoid(game) {
 
 	this.wanderRadialMag = 50;
 	this.distanceExtension = 100;
-	this.wanderAngle = 30;
-	this.wanderVariance = 40;
+	this.wanderAngle = 0;
+	this.wanderVariance = 180;
 	this.wanderDate = new Date();
-	this.wanderDelta = 150;
-	this.wanderWeight = 2.5;
+	this.wanderTime = 1;
+
 
 	// Debug Info
 	this.debugWanderExtendCatch = null;

@@ -18,11 +18,10 @@ BehaviorWander.prototype = {
 			var wand = this.wander();
 			this.boid.sprite.body.acceleration.add(wand.x,wand.y);
 			this.boid.sprite.body.velocity.add(this.boid.sprite.body.acceleration.x, this.boid.sprite.body.acceleration.y)
-			this.boid.sprite.body.acceleration.multiply(0,0);
 		}
 
 		// Handle the Orientaion and other post velocity additions
-		Entity.prototype.update.call(this);
+		Behavior.prototype.update.call(this);
 
 		MovementUtils.loopWalls(this.boid.sprite.position,this.boid.game.world);
 	},
