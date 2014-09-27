@@ -50,16 +50,16 @@ Boid.prototype.debugUpdate = function() {
 	this.debugVel.end.x = this.sprite.position.x + this.sprite.body.velocity.x;
 	this.debugVel.end.y = this.sprite.position.y + this.sprite.body.velocity.y;
 
-	this.debugLooK.start.x = this.sprite.position.x;
-	this.debugLooK.start.y = this.sprite.position.y;
-	this.debugLooK.end.x =  this.debugAheadCatch.x;
-	this.debugLooK.end.y = this.debugAheadCatch.y;
+	//this.debugLooK.start.x = this.sprite.position.x;
+	//this.debugLooK.start.y = this.sprite.position.y;
+	//this.debugLooK.end.x =  this.debugAheadCatch.x;
+	//this.debugLooK.end.y = this.debugAheadCatch.y;
 
 }
 
 Boid.prototype.debugRender = function() {
 
 	Entity.prototype.debugRender.call(this);
-	this.game.debug.geom(this.debugLooK,'yellow', true);
+	//this.game.debug.geom(this.debugLooK,'yellow', true);
 	this.game.debug.geom(this.debugVel,'blue', true);
 }
