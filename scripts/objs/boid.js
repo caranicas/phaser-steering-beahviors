@@ -8,28 +8,20 @@ function Boid(game) {
 
 	this.sepWeight = 1.8;
 	this.cohWeight = 0.1;
-	this.aligWeight = 0.3;
+	this.aligWeight = 0.5;
+
 	this.maxSpeed = 70;
 	this.minSpeed = 30;
 	this.maxForce = 1;
 	this.maxAvoid = 3;
 	this.maxSeeAhead = 100;
+
+
+	this.debugAheadCatch = null
+
+
 	this.debugVel = null;
-
-	this.wanderCircleRad = 50;
-	this.wanderCircleDist = 100;
-	this.wanderAngle = 180;
-	this.wanderVariance = 40;
-	this.wanderDate = new Date();
-	this.wanderTime = 1;
-
-	this.wanderDebugVec = null;
-	this.wanderDebugCircle = null;
-	this.debugDisplacmentVec = null;
-
-	this.debugExtension = new Phaser.Point(0,0);
-	this.debugDisplacemt = new Phaser.Point(0,0);
-
+	this.debugLooK = null;
 }
 
 // subclass extends superclass
@@ -38,22 +30,19 @@ Boid.prototype.constructor = Boid;
 
 
 
-Boid.prototype.create = function(pos,vel,angle, debug){
+Boid.prototype.create = function(pos,vel,angle, debug) {
 
-		//alert('BOID CREATE');
+	Entity.prototype.create.call(this, pos,vel,angle, debug);
+	if(debug)
+	{
+		this.debugVel = new Phaser.Line(0,0,0,0);
+		this.debugLooK = new Phaser.Line(0,0,0,0);
+	}
 
-		Entity.prototype.create.call(this, pos,vel,angle, debug);
-		if(debug)
-		{
-			this.debugVel = new Phaser.Line(0,0,0,0);
-		}
-
-		return this;
+	return this;
 }
 
-
-Boid.prototype.debugUpdate = function()
-{
+Boid.prototype.debugUpdate = function() {
 
 	Entity.prototype.debugUpdate.call(this);
 	this.debugVel.start.x = this.sprite.position.x;
@@ -61,10 +50,16 @@ Boid.prototype.debugUpdate = function()
 	this.debugVel.end.x = this.sprite.position.x + this.sprite.body.velocity.x;
 	this.debugVel.end.y = this.sprite.position.y + this.sprite.body.velocity.y;
 
+	this.debugLooK.start.x = this.sprite.position.x;
+	this.debugLooK.start.y = this.sprite.position.y;
+	this.debugLooK.end.x =  this.debugAheadCatch.x;
+	this.debugLooK.end.y = this.debugAheadCatch.y;
+
 }
 
-Boid.prototype.debugRender = function(){
+Boid.prototype.debugRender = function() {
 
 	Entity.prototype.debugRender.call(this);
+	this.game.debug.geom(this.debugLooK,'yellow', true);
 	this.game.debug.geom(this.debugVel,'blue', true);
 }

@@ -19,6 +19,7 @@ Things are shaping up.
 - Follow
 - Flee
 - Arrival
+- Increase Efficency of loops.
 
 -- Things that need doing --
 - Build tools

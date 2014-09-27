@@ -14,3 +14,5 @@ BehaviorRotate.prototype = {
 		this.boid.sprite.angle = this.boid.sprite.angle+1;
 	}
 }
+
+
