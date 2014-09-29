@@ -14,7 +14,7 @@ BehaviorFlockAndAvoid.prototype = {
 		var separation = this.calcSeparate(flockObjs);
 		var alignment = this.calcAlignment(flockObjs);
 		var cohesion = this.calcCohesion(flockObjs);
-		var avoid = this.calcAvoidObjs(avoidObjs);
+		var avoid = this.calcAvoidForce(avoidObjs);
 		separation = separation.multiply(this.boid.sepWeight, this.boid.sepWeight);
     alignment = alignment.multiply(this.boid.aligWeight,this.boid.aligWeight);
     cohesion = cohesion.multiply(this.boid.cohWeight,this.boid.cohWeight);
@@ -31,22 +31,13 @@ BehaviorFlockAndAvoid.prototype = {
 
 	},
 
-	calcAvoidObjs:function(objs)
+	calcAvoidForce:function(objs)
 	{
-		var ahead = new Phaser.Point(0,0);
-		var aheadNorm = new Phaser.Point(0,0);
-		aheadNorm = Phaser.Point.normalize(this.boid.sprite.body.velocity, aheadNorm)
-		var aheadVel =  aheadNorm.multiply(this.boid.maxSeeAhead,this.boid.maxSeeAhead);
-		ahead = new Phaser.Point.add(this.boid.sprite.position,aheadVel,ahead);
-		this.boid.debugAheadCatch = ahead;
 
-		var aheadTwo = new Phaser.Point(0,0);
-		var aheadTwoNorm = new Phaser.Point(0,0);
-		aheadTwoNorm = Phaser.Point.normalize(this.boid.sprite.body.velocity, aheadTwoNorm)
-		var aheadTwoVel =  aheadTwoNorm.multiply(this.boid.maxSeeAhead,this.boid.maxSeeAhead/2);
-		aheadTwo = new Phaser.Point.add(this.boid.sprite.position,aheadTwoVel,aheadTwo);
+		var ahead = MovementUtils.lookAhead(this.boid.sprite.position,this.boid.sprite.body.velocity, this.boid.maxSeeAhead);
+		var aheadTwo = MovementUtils.lookAhead(this.boid.sprite.position, this.boid.sprite.body.velocity, this.boid.maxSeeAhead/2);
 
-		var avoidMe = this.findAvoidObject(objs, ahead, aheadTwo);
+		var avoidMe = this.findAvoidObject(objs,ahead,aheadTwo);
 
 		var avoidance = new Phaser.Point(0,0);
 		if(avoidMe != null)
@@ -59,8 +50,10 @@ BehaviorFlockAndAvoid.prototype = {
 		return avoidance;
 	},
 
-	findAvoidObject:function(list,ahead, aheadTwo)
+	findAvoidObject:function(list,ahead,aheadTwo)
 	{
+
+
 		var closest = null
 		var newDistance;
 		for(var j = 0; j < list.length; ++j)

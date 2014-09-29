@@ -46,6 +46,14 @@ moveUtils = function(){
     }
   }
 
+  function lookAhead(position, velocity, lookMag)
+  {
+    var aheadNorm = Phaser.Point.normalize(velocity)
+    var aheadVel =  aheadNorm.multiply(lookMag,lookMag);
+    return new Phaser.Point.add(position,aheadVel);
+
+  }
+
   function avoidWalls(vector,bounds,  buffer, stregth){
 
     var avoidance = new Phaser.Point();
@@ -94,7 +102,8 @@ moveUtils = function(){
     loopWalls:loopWalls,
     avoidWalls:avoidWalls,
     lineIntersectsCircle:lineIntersectsCircle,
-    getRandomBetween:getRandomBetween
+    getRandomBetween:getRandomBetween,
+    lookAhead:lookAhead
 
   }
 };

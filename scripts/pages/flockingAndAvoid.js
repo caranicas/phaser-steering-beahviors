@@ -19,7 +19,8 @@ $(document).ready(function() {
   function create () {
     var bg = game.add.sprite(game.world.centerX, game.world.centerY, 'spaceBG');
     bg.anchor.setTo(0.5, 0.5);
-   	createAvoidanceTest()
+   	//createAvoidanceTest()
+    createAvoidanceTestTwo()
 	}
 
 	function createAvoidanceTest()
@@ -27,6 +28,34 @@ $(document).ready(function() {
 			createFlockOne();
 			createFlockTwo();
 	}
+
+
+  function createAvoidanceTestTwo()
+  {
+      var boid = new Ship(game);
+      boid.initalize(1,'ship1');
+      var xpos = game.world.centerX-200;
+      var ypos = game.world.centerY;
+      var pos = new Phaser.Point(xpos,ypos);
+      var vel = new Phaser.Point(30,0)
+      boid.create(pos,vel, 0, isDebugging);
+      boid.category = 1;
+      boid.behavior = new BehaviorFlockAndAvoid(boid);
+      Flock.push(boid);
+      Flockable.push(boid);
+
+      var boid = new Ship(game);
+      boid.initalize(2,'ship2');
+      var xpos = game.world.centerX+200;
+      var ypos = game.world.centerY+2;
+      var pos = new Phaser.Point(xpos,ypos);
+      var vel = new Phaser.Point(-30,0)
+      boid.create(pos,vel, 0, isDebugging);
+      boid.category = 1;
+      boid.behavior = new BehaviorFlockAndAvoid(boid);
+      FlockTwo.push(boid);
+      Flockable.push(boid);
+  }
 
 	function createFlockOne()
 	{
