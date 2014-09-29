@@ -7,8 +7,7 @@ function WanderingBoid(game) {
 	this.wanderAngle = 0;
 	this.wanderVariance = 180;
 	this.wanderDate = new Date();
-	this.wanderDelta = 1;
-
+	this.wanderDelta = 20;
 
 	// Debug Info
 	this.debugWanderExtendCatch = null;
@@ -81,11 +80,11 @@ WanderingBoid.prototype.debugUpdate = function(){
 WanderingBoid.prototype.debugRender = function(){
 	Boid.prototype.debugRender.call(this);
 
-	//this.game.debug.geom(this.debugCircleDisplay,'green', true);
+	this.game.debug.geom(this.debugCircleDisplay,'green', true);
 	this.game.debug.geom(this.debugWanderExtendCatchDisplay,'white', true);
-	//this.game.debug.geom(this.debugDisplacmentDisplay,'red', true);
-	//this.game.debug.geom(this.debugSeekTestDisplay,'orange', true);
-	//this.game.debug.geom(this.debugSeekActualDisplay,'black', true);
+	this.game.debug.geom(this.debugDisplacmentDisplay,'red', true);
+	this.game.debug.geom(this.debugSeekTestDisplay,'orange', true);
+	this.game.debug.geom(this.debugSeekActualDisplay,'black', true);
 
 
 }

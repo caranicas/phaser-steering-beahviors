@@ -2,11 +2,11 @@
 $(document).ready(function() {
 	var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render });
 
-	var numBoids = 1;
+	var numBoids = 10;
   var Flock = [];
   var Flockable = [];
 	var self = this;
-	var isDebugging = true;
+	var isDebugging = false;
 
   function preload () {
   	game.load.image('spaceBG', 'assets/space.jpg');
