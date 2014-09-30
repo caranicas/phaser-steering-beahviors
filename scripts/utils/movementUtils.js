@@ -12,7 +12,13 @@ moveUtils = function(){
       desired.setMagnitude(maxSpeed);
       var steer = Phaser.Point.subtract(desired,velocity);
       return limit(steer, maxForce);
+  }
 
+
+   function seekFull(target,position)
+  {
+    var desired = Phaser.Point.subtract(target,position);
+    return desired;
   }
 
   function limit(vector, max)
@@ -98,6 +104,7 @@ moveUtils = function(){
   return{
     facing:facing,
     seek:seek,
+    seekFull:seekFull,
     limit:limit,
     loopWalls:loopWalls,
     avoidWalls:avoidWalls,

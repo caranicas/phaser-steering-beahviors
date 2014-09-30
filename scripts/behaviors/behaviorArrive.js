@@ -20,11 +20,16 @@ BehaviorArrive.prototype = {
 
 	calcArrival:function(){
 
+		var seek = MovementUtils.seek(this.boid.arrivalTarget.sprite.position,this.boid.sprite.position,this.boid.sprite.body.velocity, this.boid.maxSpeed, this.boid.maxForce)
 
-		var sVec = MovementUtils.seek(this.boid.arrivalTarget.sprite.position,this.boid.sprite.position,this.boid.sprite.body.velocity, this.boid.maxSpeed, this.boid.maxForce)
-		return sVec;
+		var distance = Phaser.Math.distance(this.boid.sprite.position.x, this.boid.sprite.position.y, this.boid.arrivalTarget.sprite.position.x, this.boid.arrivalTarget.sprite.position.y);
 
+		if(distance <= this.boid.arrivalTarget.arrivalZone)
+		{
+			var desired = Phaser.Point.subtract(this.boid.arrivalTarget.sprite.position,this.boid.sprite.position);
+			var distance = desired.getMagnitude();
+		}
 
-
-	},
+		return seek;
+	}
 }
