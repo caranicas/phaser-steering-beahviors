@@ -12,7 +12,6 @@ BehaviorWander.prototype = {
 	update:function(){
 		var now = new Date();
 		var diff = now - this.boid.wanderDate;
-		debugger;
 		if(diff > this.boid.wanderDelta)
 		{
 			this.boid.wanderDate = now;
@@ -31,7 +30,6 @@ BehaviorWander.prototype = {
 		normalVel.setMagnitude(this.boid.distanceExtension);
 		var extend = Phaser.Point.add(normalVel, this.boid.sprite.position);
 		this.boid.debugWanderExtendCatch = extend;
-		debugger;
 		return extend;
 	},
 
@@ -48,11 +46,9 @@ BehaviorWander.prototype = {
 		var radial = this.radialOffset();
 		var target = Phaser.Point.add(extenstion, radial);
 
-		var wander = MovementUtils.seek(target,this.boid.sprite.position,this.boid.sprite.body.velocity, this.boid.maxSpeed, this.boid.maxForce);
-
+		var wander = MovementUtils.limit(MovementUtils.seek(target, this.boid.sprite.position), this.boid.maxForce);
 		this.boid.debugWanderCatch = wander;
 		this.updateAngle()
-
 		return wander;
 	},
 

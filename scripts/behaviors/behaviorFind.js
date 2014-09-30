@@ -13,13 +13,17 @@ BehaviorFind.prototype = {
 
 	update:function(){
 
-		var sVec = MovementUtils.seek(this.target.sprite.position,this.boid.sprite.position,this.boid.sprite.body.velocity, this.boid.maxSpeed, this.boid.maxForce)
-		this.boid.sprite.body.acceleration.add(sVec.x,sVec.y);
-		this.boid.sprite.body.velocity.add( this.boid.sprite.body.acceleration.x, this.boid.sprite.body.acceleration.y)
-
-		// Handle the Orientaion and other post velocity additions
+		var sVEC = this.calcSeek()
+		this.boid.sprite.body.acceleration.add(sVEC.x,sVEC.y);
 		Behavior.prototype.update.call(this);
 
 		MovementUtils.loopWalls(this.boid.sprite.body.position,this.boid.game.world);
+	},
+
+	calcSeek:function(){
+		var seek = MovementUtils.seek(this.target.sprite.position,this.boid.sprite.position).normalize();
+		var desired = new Phaser.Point(seek.x*this.boid.maxSpeed, seek.y*this.boid.maxSpeed);
+		var steer = MovementUtils.limit(Phaser.Point.subtract(desired, this.boid.sprite.body.velocity),this.boid.maxForce)
+		return steer;
 	}
 }

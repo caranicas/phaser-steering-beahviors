@@ -2,7 +2,7 @@
 $(document).ready(function() {
 	var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render });
 
-	var numBoids = 20;
+	var numBoids = 1;
   var Flock = [];
   var BlackHoles = [];
   var Flockable = [];
@@ -29,17 +29,17 @@ $(document).ready(function() {
 	function createFlockingTest()
 	{
 	  createFlockOne();
-    createFlockTwo();
+    //createFlockTwo();
    	createWormholeOne();
-   	createWormholeTwo();
+   	//createWormholeTwo();
 	}
 
 	function createWanderTest()
 	{
 		var boid = new Ship(game);
   		boid.initalize(1,'ship1');
-  		var xpos = game.world.centerX-400 + Math.floor(Math.random()*200);
-	 	  var ypos = game.world.centerY-300 + Math.floor(Math.random()*200);
+  		var xpos = game.world.centerX+400 + Math.floor(Math.random()*200);
+	 	  var ypos = game.world.centerY+300 + Math.floor(Math.random()*200);
   		var pos = new Phaser.Point(xpos,ypos);
   		var vel = new Phaser.Point(30,10)
   		boid.create(pos,vel, 0, isDebugging);
@@ -127,10 +127,10 @@ $(document).ready(function() {
     {
     		var boid = new Ship(game);
     		boid.initalize(i,'ship1');
-    		var xpos = game.world.centerX-400 + Math.floor(Math.random()*200);
-		 	  var ypos = game.world.centerY-300 + Math.floor(Math.random()*200);
+    		var xpos = game.world.centerX;//-400 + Math.floor(Math.random()*200);
+		 	  var ypos = game.world.centerY+200;//-300 + Math.floor(Math.random()*200);
     		var pos = new Phaser.Point(xpos,ypos);
-    		var vel = new Phaser.Point(30,10)
+    		var vel = new Phaser.Point(0,-40)
     		boid.create(pos,vel, 0, isDebugging);
     		boid.category = 1;
     		boid.behavior = new BehaviorAdvFlock(boid);

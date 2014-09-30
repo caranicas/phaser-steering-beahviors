@@ -20,7 +20,6 @@ function WanderingBoid(game) {
 	this.debugSeekTestDisplay = null;
 	this.debugSeekActualDisplay = null;
 	this.debugCircleDisplay = null;
-
 }
 
 // subclass extends superclass

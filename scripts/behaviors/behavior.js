@@ -5,6 +5,6 @@ Behavior = function (boid) {
 Behavior.prototype.update = function(objs){
 	this.boid.sprite.body.velocity.add(this.boid.sprite.body.acceleration.x, this.boid.sprite.body.acceleration.y)
 	this.boid.sprite.body.acceleration.multiply(0,0);
-	MovementUtils.limit(this.boid.sprite.body.velocity, this.maxSpeed);
+	MovementUtils.limit(this.boid.sprite.body.velocity, this.boid.maxSpeed);
 	this.boid.sprite.angle = MovementUtils.facing(this.boid.sprite.body.velocity);
 }
