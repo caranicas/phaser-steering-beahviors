@@ -21,7 +21,7 @@ BehaviorFind.prototype = {
 	},
 
 	calcSeek:function(){
-		var seek = MovementUtils.seekFull(this.target.sprite.position,this.boid.sprite.position).normalize();
+		var seek = MovementUtils.seek(this.target.sprite.position,this.boid.sprite.position).normalize();
 		var desired = new Phaser.Point(seek.x*this.boid.maxSpeed, seek.y*this.boid.maxSpeed);
 		var steer = MovementUtils.limit(Phaser.Point.subtract(desired, this.boid.sprite.body.velocity),this.boid.maxForce)
 		return steer;

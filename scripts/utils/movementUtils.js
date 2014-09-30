@@ -6,16 +6,7 @@ moveUtils = function(){
   	return newangle;
   }
 
-  function seek(target,position,velocity,maxSpeed,maxForce)
-  {
-    	var desired = Phaser.Point.subtract(target,position);
-      desired.setMagnitude(maxSpeed);
-      var steer = Phaser.Point.subtract(desired,velocity);
-      return limit(steer, maxForce);
-  }
-
-
-   function seekFull(target,position)
+   function seek(target,position)
   {
     var desired = Phaser.Point.subtract(target,position);
     return desired;
@@ -23,7 +14,6 @@ moveUtils = function(){
 
   function limit(vector, max)
   {
-
     if(vector.getMagnitude() > max)
     {
       vector.normalize();
@@ -32,8 +22,8 @@ moveUtils = function(){
     return vector;
   }
 
-
-  function loopWalls(vector, bounds){
+  function loopWalls(vector, bounds)
+  {
     if (vector.x < 0)
     {
       vector.x = bounds.width;
@@ -57,7 +47,6 @@ moveUtils = function(){
     var aheadNorm = Phaser.Point.normalize(velocity)
     var aheadVel =  aheadNorm.multiply(lookMag,lookMag);
     return new Phaser.Point.add(position,aheadVel);
-
   }
 
   function avoidWalls(vector,bounds,  buffer, stregth){
@@ -104,7 +93,6 @@ moveUtils = function(){
   return{
     facing:facing,
     seek:seek,
-    seekFull:seekFull,
     limit:limit,
     loopWalls:loopWalls,
     avoidWalls:avoidWalls,

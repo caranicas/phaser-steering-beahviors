@@ -103,7 +103,7 @@ BehaviorAdvFlock.prototype = {
 		if (count > 0)
 		{
 			total = total.divide(count,count);
-			return MovementUtils.seekFull(total, this.boid.sprite.position).normalize();
+			return MovementUtils.seek(total, this.boid.sprite.position).normalize();
 		}
 		else
 		{

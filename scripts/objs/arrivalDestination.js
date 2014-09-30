@@ -1,6 +1,6 @@
 function ArrivalDestination(game) {
   Immovable.call(this, game); // call super constructor.
-  this.arrivalZone = 30;
+  this.arrivalZone = 50;
 }
 
 
