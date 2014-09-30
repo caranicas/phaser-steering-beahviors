@@ -15,7 +15,6 @@ BehaviorFind.prototype = {
 
 		var sVec = MovementUtils.seek(this.target.sprite.position,this.boid.sprite.position,this.boid.sprite.body.velocity, this.boid.maxSpeed, this.boid.maxForce)
 		this.boid.sprite.body.acceleration.add(sVec.x,sVec.y);
-		this.boid.sprite.body.velocity.add( this.boid.sprite.body.acceleration.x, this.boid.sprite.body.acceleration.y)
 
 		// Handle the Orientaion and other post velocity additions
 		Behavior.prototype.update.call(this);

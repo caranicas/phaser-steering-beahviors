@@ -8,7 +8,7 @@ Entity = function (game) {
 	this.category = -1;
 
 	// function
-	this.behavior = null;;
+	this.behavior = null;
 };
 
 Entity.prototype.initalize = function(index, asset){

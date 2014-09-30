@@ -7,17 +7,11 @@ Immovable.prototype = Object.create(Entity.prototype);
 Immovable.prototype.constructor = Immovable;
 
 
-
-
-
-
 Immovable.prototype.initalize = function(index, asset){
 
 	Entity.prototype.initalize.call(this,index, asset);
 	return this;
 }
-
-
 
 Immovable.prototype.create = function(pos,vel,angle, debug){
 

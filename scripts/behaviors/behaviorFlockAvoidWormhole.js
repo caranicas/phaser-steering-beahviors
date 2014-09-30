@@ -57,7 +57,6 @@ BehaviorFlockAvoidWormhole.prototype = {
 
 
 
-
 	findAvoidObject:function(list,ahead,aheadTwo)
 	{
 

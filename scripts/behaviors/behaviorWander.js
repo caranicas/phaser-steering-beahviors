@@ -12,7 +12,6 @@ BehaviorWander.prototype = {
 	update:function(){
 		var now = new Date();
 		var diff = now - this.boid.wanderDate;
-		debugger;
 		if(diff > this.boid.wanderDelta)
 		{
 			this.boid.wanderDate = now;
