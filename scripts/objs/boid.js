@@ -15,11 +15,7 @@ function Boid(game) {
 	this.maxForce = 1;
 	this.maxAvoid = 3;
 	this.maxSeeAhead = 100;
-
-
 	this.debugAheadCatch = null
-
-
 	this.debugVel = null;
 	this.debugLooK = null;
 }
@@ -60,6 +56,6 @@ Boid.prototype.debugUpdate = function() {
 Boid.prototype.debugRender = function() {
 
 	Entity.prototype.debugRender.call(this);
-	//this.game.debug.geom(this.debugLooK,'yellow', true);
-	this.game.debug.geom(this.debugVel,'blue', true);
+
+	this.game.debug.geom(this.debugVel,'red', true);
 }

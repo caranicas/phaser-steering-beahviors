@@ -15,13 +15,12 @@ Things are shaping up.
 
 -- On the Docket --
 - Ship Avoidance
-- Wandering
 - Follow
 - Flee
-- Arrival
 - Increase Efficency of loops.
 
 -- Things that need doing --
+- Arrival destination debug
 - Build tools
 - Bower
 - Learn better markdown
