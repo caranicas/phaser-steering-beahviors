@@ -10,12 +10,10 @@ BehaviorArrive.prototype.constructor = BehaviorArrive;
 BehaviorArrive.prototype = {
 
 	update:function(){
-
 		var arrive = this.calcArrival();
 		this.boid.sprite.body.acceleration.add(arrive.x,arrive.y);
 		Behavior.prototype.update.call(this);
 		MovementUtils.loopWalls(this.boid.sprite.body.position,this.boid.game.world);
-
 	},
 
 	calcArrival:function(){

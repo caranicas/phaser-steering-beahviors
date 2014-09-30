@@ -6,10 +6,18 @@ moveUtils = function(){
   	return newangle;
   }
 
-   function seek(target,position)
+   function seek(target,point)
   {
-    var desired = Phaser.Point.subtract(target,position);
+    var desired = Phaser.Point.subtract(target,point);
     return desired;
+  }
+
+  function seekSteer(target,position,curVelocity, maxForce, maxSpeed){
+
+    var seek = this.seek(target,position).normalize();
+    var desired = new Phaser.Point(seek.x*maxSpeed, seek.y*maxSpeed);
+    var steer = MovementUtils.limit(Phaser.Point.subtract(desired,curVelocity),maxForce)
+    return steer;
   }
 
   function limit(vector, max)
@@ -93,6 +101,7 @@ moveUtils = function(){
   return{
     facing:facing,
     seek:seek,
+    seekSteer:seekSteer,
     limit:limit,
     loopWalls:loopWalls,
     avoidWalls:avoidWalls,

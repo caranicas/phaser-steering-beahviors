@@ -3,7 +3,6 @@ function BehaviorFind (boid, target) {
   this.target = target;
 }
 
-
 // subclass extends superclass
 BehaviorFind.prototype = Object.create(Behavior.prototype);
 BehaviorFind.prototype.constructor = BehaviorFind;

@@ -9,6 +9,7 @@ Entity = function (game) {
 
 	// function
 	this.behavior = null;
+
 };
 
 Entity.prototype.initalize = function(index, asset){
@@ -39,8 +40,11 @@ Entity.prototype.debugRender = function(){
 
 }
 
+Entity.prototype.getPosition = function(index, asset) {
+		return this.sprite.position;
+}
 
-// call afactory method that pushes all relevent information into object
-Entity.prototype.syncWithFly = function(){
-
+// Facade for sprite
+Entity.prototype.getVelocity =function( ){
+	return this.sprite.body.velocity;
 }
