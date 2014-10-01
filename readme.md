@@ -12,15 +12,24 @@ Things are shaping up.
 - Seeking
 - Flocking
 - Object Avoidance
+- Wandering
+- Pursue
 
 -- On the Docket --
-- Ship Avoidance
+- Evade
 - Follow
-- Flee
-- Increase Efficency of loops.
+- Pathing
+- Leader
+- Queuing
+- Proximity Aware Pursuit/Arrival
+- Proximity Aware Evade
+- Ship Avoidance - need to project spheres not points. or line to line?
 
 -- Things that need doing --
-- Arrival destination debug
+- Arrival/Pursuit/Evading/Fleeing debug rendering
+- Initializers and default objects
+- implement more faces functions
+- Increase Efficency of loops.
 - Build tools
 - Bower
 - Learn better markdown

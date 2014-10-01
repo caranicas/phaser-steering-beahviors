@@ -25,7 +25,6 @@ Boid.prototype = Object.create(Entity.prototype);
 Boid.prototype.constructor = Boid;
 
 
-
 Boid.prototype.create = function(pos,vel,angle, debug) {
 
 	Entity.prototype.create.call(this, pos,vel,angle, debug);

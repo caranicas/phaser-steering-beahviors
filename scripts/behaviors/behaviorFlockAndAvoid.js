@@ -14,7 +14,7 @@ BehaviorFlockAndAvoid.prototype = {
 		var separation = this.calcSeparate(flockObjs);
 		var alignment = this.calcAlignment(flockObjs);
 		var cohesion = this.calcCohesion(flockObjs);
-		var avoid = this.calcAvoidForce(avoidObjs);
+		var avoid = this.calcAvoid(avoidObjs);
 		separation = separation.multiply(this.boid.sepWeight, this.boid.sepWeight);
     alignment = alignment.multiply(this.boid.aligWeight,this.boid.aligWeight);
     cohesion = cohesion.multiply(this.boid.cohWeight,this.boid.cohWeight);
@@ -31,7 +31,7 @@ BehaviorFlockAndAvoid.prototype = {
 
 	},
 
-	calcAvoidForce:function(objs)
+	calcAvoid:function(objs)
 	{
 
 		var ahead = MovementUtils.lookAhead(this.boid.sprite.position,this.boid.sprite.body.velocity, this.boid.maxSeeAhead);
