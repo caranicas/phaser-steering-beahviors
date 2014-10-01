@@ -5,7 +5,15 @@ html, body{
 }
 
 h1{
-	color:red;
+	color:white;
 	text-align: center;
 	font-size: 30px;
 }
+
+
+a{
+	text-align: center;
+	font-size: 20px;
+	color:white;
+}
+

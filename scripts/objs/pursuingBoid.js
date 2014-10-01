@@ -2,7 +2,7 @@ function PursuingBoid(game, target) {
 	Boid.call(this, game); // call super constructor.
 	this.pursuitTarget = target;
 
-	this.pursuitPredict = 3;
+	this.pursuitPredict = 5;
 	this.maxPursuitSpeed = 60;
 	this.maxPursuitForce = 50;
 }

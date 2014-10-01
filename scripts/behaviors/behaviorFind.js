@@ -12,14 +12,14 @@ BehaviorFind.prototype = {
 
 	update:function(){
 
-		var sVEC = this.calcSeek()
+		var sVEC = this.calcFind()
 		this.boid.sprite.body.acceleration.add(sVEC.x,sVEC.y);
 		Behavior.prototype.update.call(this);
 
 		MovementUtils.loopWalls(this.boid.sprite.body.position,this.boid.game.world);
 	},
 
-	calcSeek:function(){
+	calcFind:function(){
 		var seek = MovementUtils.seek(this.target.sprite.position,this.boid.sprite.position).normalize();
 		var desired = new Phaser.Point(seek.x*this.boid.maxSpeed, seek.y*this.boid.maxSpeed);
 		var steer = MovementUtils.limit(Phaser.Point.subtract(desired, this.boid.sprite.body.velocity),this.boid.maxForce)

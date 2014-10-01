@@ -24,7 +24,7 @@ BehaviorArrive.prototype = {
 		var arrival = new Phaser.Point(0,0);
 		if(distance <= this.boid.arrivalTarget.arrivalZone)
 		{
-			var attenuated =seek.setMagnitude(this.boid.maxSpeed*(distance/this.boid.arrivalTarget.arrivalZone));
+			seek.setMagnitude(this.boid.maxSpeed*(distance/this.boid.arrivalTarget.arrivalZone));
 		}
 		else
 		{
