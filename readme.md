@@ -16,7 +16,6 @@ Things are shaping up.
 - Pursue
 
 -- On the Docket --
-- Flee
 - Evade
 - Follow
 - Pathing
