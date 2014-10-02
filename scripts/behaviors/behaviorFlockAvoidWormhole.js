@@ -173,8 +173,8 @@ BehaviorFlockAvoidWormhole.prototype = {
 		if (count > 0)
 		{
 			total = total.divide(count,count);
-			return MovementUtils.seek(total, this.boid.sprite.position).normalize();
-			//MovementUtils.seek(total, this.boid.sprite.position,this.boid.sprite.body.velocity, this.boid.maxSpeed, this.boid.maxForce);
+			return MovementUtils.seekSteer(total, this.boid.getPosition(), this.boid.getVelocity(), this.boid.maxForce, this.boid.maxSpeed);
+			//return MovementUtils.seek(total, this.boid.sprite.position).normalize();
 		}
 		else
 		{

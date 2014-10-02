@@ -31,7 +31,9 @@ BehaviorWander.prototype = {
 		var radial = this.radialOffset();
 		var target = Phaser.Point.add(extenstion, radial);
 
-		var wander = MovementUtils.limit(MovementUtils.seek(target, this.boid.sprite.position), this.boid.maxWanderingForce);
+		//var wander = MovementUtils.limit( MovementUtils.seekSteer(target, this.boid.getPosition(), this.boid.getVelocity(), this.boid.maxForce, this.boid.maxSpeed));
+
+		var wander = MovementUtils.limit(MovementUtils.seek(target, this.boid.sprite.position));
 		this.boid.debugWanderCatch = wander;
 		this.updateAngle()
 		return wander;

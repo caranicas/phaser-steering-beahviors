@@ -1,0 +1,12 @@
+{
+  "name": "example-app",
+  "version": "0.1.0",
+  "main": "public/javascripts/app.js",
+  "dependencies": {
+    "lodash": "~2.0.0",
+    "jquery": "~2.0.2",
+    "phaser-offical": "latest"
+  },
+  "overrides": {
+  }
+}

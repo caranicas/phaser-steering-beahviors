@@ -1,0 +1,25 @@
+{
+  "author": "Kendrick Caranicas",
+  "name": "example-app",
+  "description": "Package description",
+  "version": "0.0.1",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "start": "gulp start",
+    "test": "gulp test"
+  },
+  "dependencies": {
+    "del": "^0.1.3",
+    "gulp": "^3.8.8",
+    "gulp-coffee": "^2.2.0",
+    "gulp-concat": "^2.4.1",
+    "gulp-imagemin": "^1.0.1",
+    "gulp-sourcemaps": "^1.2.2",
+    "gulp-uglify": "^1.0.1"
+  },
+  "devDependencies": {}
+}

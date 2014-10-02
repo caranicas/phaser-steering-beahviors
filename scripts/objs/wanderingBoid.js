@@ -7,7 +7,7 @@ function WanderingBoid(game) {
 	this.wanderAngle = 0;
 	this.wanderVariance = 180;
 	this.wanderDate = new Date();
-	this.wanderDelta = 20;
+	this.wanderDelta = 200;
 
 	// Debug Info
 	this.debugWanderExtendCatch = null;
