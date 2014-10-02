@@ -6,4 +6,5 @@ Thumbs.db
 scripts/libs
 
 # Build
-node_modules/*
+build/
+node_modules/
