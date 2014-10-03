@@ -14,20 +14,21 @@ Things are shaping up.
 - Object Avoidance
 - Wandering
 - Pursue
+- Flee
+- Evade
+- Pathing
 
 -- On the Docket --
-- Evade
 - Follow
-- Pathing
 - Leader
 - Queuing
-- Proximity Aware Pursuit/Arrival
+- Proximity Aware Pursuit
 - Proximity Aware Evade
 - Ship Avoidance - need to project spheres not points. or line to line?
 
 -- Things that need doing --
 - Arrival/Pursuit/Evading/Fleeing debug rendering
-- Initializers and default objects
+- Initializers and default objects, and undefined checks
 - implement more faces functions
 - Increase Efficency of loops.
 - Build tools

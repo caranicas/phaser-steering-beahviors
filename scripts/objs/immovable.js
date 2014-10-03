@@ -14,7 +14,6 @@ Immovable.prototype.initalize = function(index, asset){
 }
 
 Immovable.prototype.create = function(pos,vel,angle, debug){
-
 	Entity.prototype.create.call(this, pos,vel,angle, debug);
 	return this;
 }
