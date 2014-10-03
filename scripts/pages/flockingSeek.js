@@ -36,7 +36,7 @@ $(document).ready(function() {
 
 	function createWanderTest()
 	{
-		var boid = new Ship(game);
+			var boid = new Ship(game);
   		boid.initalize(1,'ship1');
   		var xpos = game.world.centerX+400 + Math.floor(Math.random()*200);
 	 	  var ypos = game.world.centerY+300 + Math.floor(Math.random()*200);

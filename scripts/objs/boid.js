@@ -20,6 +20,8 @@ function Boid(game) {
 	this.debugLooK = null;
 }
 
+
+
 // subclass extends superclass
 Boid.prototype = Object.create(Entity.prototype);
 Boid.prototype.constructor = Boid;
