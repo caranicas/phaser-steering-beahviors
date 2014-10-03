@@ -16,9 +16,9 @@ Things are shaping up.
 - Pursue
 - Flee
 - Evade
+- Pathing
 
 -- On the Docket --
-- Pathing
 - Follow
 - Leader
 - Queuing
