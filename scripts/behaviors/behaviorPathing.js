@@ -29,7 +29,6 @@ BehaviorPathing.prototype = {
 	checkNext:function (distance){
 		if(distance.getMagnitude() <= this.boid.closeEnough)
 		{
-			alert('next');
 			this.boid.updateTarget();
 		}
 	}

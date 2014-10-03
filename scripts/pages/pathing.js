@@ -30,7 +30,7 @@ $(document).ready(function() {
   function createPath()
   {
     var arr = [];
-    var spacing = game.world.width/(pathLen-1);
+    var spacing = game.world.width/pathLen;
     var xstart = spacing/2
 
     for(var i =0; i < pathLen; ++i)

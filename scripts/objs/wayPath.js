@@ -5,13 +5,11 @@ function WayPath(points) {
 
 
 WayPath.prototype.update = function(){
-
-
-	if(++this.cur >= this.points.length)
+	++this.cur;
+	if(this.cur >= this.points.length)
 	{
 		this.cur = 0;
 	}
-
 }
 
 WayPath.prototype.getCurrent = function(){
