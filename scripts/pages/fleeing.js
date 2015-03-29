@@ -42,7 +42,7 @@ $(document).ready(function() {
     return boid;
   }
 
-  function creatFleeingObject(target)
+  function creatFleeingObject()
   {
     var boid = new FleeingShip(game,null);
     boid.initalize(1,'ship3');

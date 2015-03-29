@@ -16,6 +16,13 @@ BehaviorEvade.prototype = {
 	},
 
 	calcEvade:function(){
-		return new Phaser.Point(0,0);
+
+		var seek = MovementUtils.seek(this.boid.preditorTarget.getPosition(),this.boid.getPosition());
+		var updatesAhead = seek.getMagnitude() / this.boid.maxSpeed;
+		console.log('updatesAhead', updatesAhead)
+		var projectedVel = new Phaser.Point(this.boid.preditorTarget.getVelocity().x * updatesAhead, this.boid.preditorTarget.getVelocity().y * updatesAhead)
+		var futurePosition = Phaser.Point.add(this.boid.preditorTarget.getPosition(), projectedVel)
+
+		return futurePosition;
 	}
 }
