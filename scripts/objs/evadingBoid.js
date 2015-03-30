@@ -14,7 +14,7 @@ EvadingBoid.prototype.create = function(pos,vel,angle, debug){
 }
 
 EvadingBoid.prototype.updateTarget = function(target){
-	this.pursuitTarget = target;
+	this.preditorTarget = target;
 }
 
 EvadingBoid.prototype.debugUpdate = function(){
